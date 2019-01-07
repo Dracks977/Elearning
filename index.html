@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Socket.IO Chat Example</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<table class="paleBlueRows">
+<thead>
+<tr>
+<th>Cron</th>
+<th>Executed ?</th>
+<th>Error ?</th>
+</tr>
+</thead>
+<tbody id="1">
+</tbody>
+</table>
+
+	<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+	<script src="/socket.io/socket.io.js"></script>
+	<script>
+		Notification.requestPermission( function(status) {
+  console.log(status); // les notifications ne seront affichées que si "autorisées"
+  var n = new Notification("Cron", {body: "SVN"}); // this also shows the notification
+});
+		
+		var socket = io();
+		socket.on('info', function(msg){
+			var n = new Notification("Cron Update");
+			n.onshow = function () { 
+  				setTimeout(n.close.bind(n), 5000); 
+			}
+			if (msg.cron){
+				$("#list").empty()
+				for (var i = msg.cron.length - 1; i >= 0; i--) {
+					$("#1").append('<tr><td>'+msg.cron[i].time+'</td><td>'+msg.cron[i].exc+'</td><td>'+msg.cron[i].err+'</td></tr>');
+				}
+			}
+			console.log(msg);
+		});
+	</script>
+</body>
+<style type="text/css">
+	table.paleBlueRows {
+  font-family: "Times New Roman", Times, serif;
+  border: 1px solid #FFFFFF;
+  width: 100%;
+  height: 200px;
+  text-align: center;
+  border-collapse: collapse;
+}
+table.paleBlueRows td, table.paleBlueRows th {
+  border: 1px solid #FFFFFF;
+  padding: 6px 5px;
+}
+table.paleBlueRows tbody td {
+  font-size: 16px;
+}
+table.paleBlueRows tr:nth-child(even) {
+  background: #D0E4F5;
+}
+table.paleBlueRows thead {
+  background: #0B6FA4;
+  border-bottom: 5px solid #FFFFFF;
+}
+table.paleBlueRows thead th {
+  font-size: 17px;
+  font-weight: bold;
+  color: #FFFFFF;
+  text-align: center;
+  border-left: 2px solid #FFFFFF;
+}
+table.paleBlueRows thead th:first-child {
+  border-left: none;
+}
+
+table.paleBlueRows tfoot {
+  font-size: 14px;
+  font-weight: bold;
+  color: #333333;
+  background: #D0E4F5;
+  border-top: 3px solid #444444;
+}
+table.paleBlueRows tfoot td {
+  font-size: 14px;
+}
+</style>
+</html>

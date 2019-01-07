@@ -27,12 +27,13 @@
 		
 		var socket = io();
 		socket.on('info', function(msg){
+			$("#1").empty()
 			var n = new Notification("Cron Update");
 			n.onshow = function () { 
   				setTimeout(n.close.bind(n), 5000); 
 			}
 			if (msg.cron){
-				$("#1").empty()
+				
 				for (var i = msg.cron.length - 1; i >= 0; i--) {
 					$("#1").append('<tr><td>'+msg.cron[i].time+'</td><td>'+msg.cron[i].exc+'</td><td>'+msg.cron[i].err+'</td></tr>');
 				}

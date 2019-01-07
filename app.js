@@ -83,7 +83,6 @@ function cron(date, i) {
 			}
 		);
 	});
-	console.log(j.nextInvocation());
 	info.cron[i] = {
 		time: j ? j.nextInvocation()._date.format("DD/MM/YYYY HH:mm:ss") : null,
 		exc: false,

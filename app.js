@@ -53,7 +53,7 @@ fs.access("./svn", fs.constants.F_OK, err => {
 	}
 });
 
-getcrenaux(process.env.SVN_HEURE * 2 - 1, function(crenaux) {
+getcrenaux(process.env.SVN_HEURE * 2, function(crenaux) {
 	info.cron = [];
 	var m = moment()
 		.hours(process.env.SVN_START_H)

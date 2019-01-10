@@ -78,7 +78,7 @@ function cron(date, i) {
 			{ username: process.env.SVN_USER, password: process.env.SVN_PASS },
 			function(err) {
 				if (err) info.cron[i].err = err;
-				info.cron[i].exc = true;
+				else info.cron[i].exc = true;
 				io.emit("info", info);
 			}
 		);

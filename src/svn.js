@@ -11,7 +11,7 @@ module.exports = {
 					password: process.env.SVN_PASS
 				},
 				function(err) {
-					if (err) info.cron[i].err = err;
+					if (err) info.cron[i].err = true;
 					else info.cron[i].exc = true;
 					io.emit("info", info);
 				}
@@ -49,7 +49,6 @@ module.exports = {
 				function(err) {
 					if (err) console.log(err);
 					else info.checkout = true;
-					console.log("finish");
 					io.emit("info", info);
 					callback();
 				}

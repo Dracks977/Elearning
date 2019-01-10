@@ -1,8 +1,11 @@
 # Elearning
 
 Copier .env.exemple en .env et remplire
+
 Le matin lancer le script
+
 Les heure des prochain up serons disponible sur http://localhost (notification web dispo)
+
 
 
 TODO

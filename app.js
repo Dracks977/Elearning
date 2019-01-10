@@ -84,7 +84,9 @@ function cron(date, i) {
 		);
 	});
 	info.cron[i] = {
-		time: j ? j.nextInvocation()._date.format("DD/MM/YYYY HH:mm:ss") : null,
+		time: j
+			? j.nextInvocation()._date.format("DD/MM/YYYY HH:mm:ss")
+			: "too late bro !",
 		exc: false,
 		err: null
 	};

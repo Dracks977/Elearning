@@ -40,28 +40,28 @@ io.on("connection", socket => {
 
 ETNA.login(function(name) {
 	ETNA.getactivity(name, function() {
-		// console.log("Starting On: " + process.env.SVN);
-		// SVN.checkout(process.env.SVN, function() {
-		io.emit("info", info);
-		SVN.getcrenaux(process.env.SVN_HEURE * 2, function(crenaux) {
-			info.cron = [];
-			var m = moment()
-				.hours(process.env.SVN_START_H)
-				.minutes(UTILS.getRandomInt(5));
-			// m.add(1, "d");
-			SVN.cron(m, 0);
-			for (c in crenaux) {
-				m.add({
-					minutes: crenaux[c].m,
-					seconds: crenaux[c].s,
-					milliseconds: UTILS.getRandomInt(99)
-				});
-				SVN.cron(m, parseInt(parseInt(c) + 1));
-			}
+		console.log("Starting On: " + process.env.SVN);
+		SVN.checkout(process.env.SVN, function() {
 			io.emit("info", info);
+			SVN.getcrenaux(process.env.SVN_HEURE * 2, function(crenaux) {
+				info.cron = [];
+				var m = moment()
+					.hours(process.env.SVN_START_H)
+					.minutes(UTILS.getRandomInt(5));
+				// m.add(1, "d");
+				SVN.cron(m, 0);
+				for (c in crenaux) {
+					m.add({
+						minutes: crenaux[c].m,
+						seconds: crenaux[c].s,
+						milliseconds: UTILS.getRandomInt(99)
+					});
+					SVN.cron(m, parseInt(parseInt(c) + 1));
+				}
+				io.emit("info", info);
+			});
 		});
 	});
-	// });
 });
 
 /*======================route fichier static (public)====================*/

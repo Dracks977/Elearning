@@ -40,8 +40,8 @@ io.on("connection", socket => {
 
 ETNA.login(function(name) {
 	ETNA.getactivity(name, function() {
-		console.log("Starting On: " + info.svn[0]);
-		SVN.checkout(info.svn[0], function() {
+		console.log("Starting On: " + process.env.SVN);
+		SVN.checkout(process.env.SVN, function() {
 			io.emit("info", info);
 			SVN.getcrenaux(process.env.SVN_HEURE * 2, function(crenaux) {
 				info.cron = [];

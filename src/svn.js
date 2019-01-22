@@ -18,9 +18,7 @@ module.exports = {
 			);
 		});
 		info.cron[i] = {
-			time: j
-				? j.nextInvocation()._date.format("DD/MM/YYYY HH:mm:ss")
-				: "too late bro !",
+			time: j ? j.nextInvocation()._date.format("DD/MM/YYYY HH:mm:ss") : "too late bro !",
 			exc: false,
 			err: null
 		};
@@ -40,7 +38,7 @@ module.exports = {
 	checkout: (repo, callback) => {
 		fs.remove("./svn", err => {
 			svnUltimate.commands.checkout(
-				encodeURI(repo),
+				repo,
 				"./svn",
 				{
 					username: process.env.SVN_USER,

@@ -40,10 +40,10 @@ module.exports = {
 			svnUltimate.commands.checkout(
 				repo,
 				"./svn",
-				// {
-				// 	username: process.env.SVN_USER,
-				// 	password: process.env.SVN_PASS
-				// },
+				{
+					username: process.env.SVN_USER,
+					password: process.env.SVN_PASS
+				},
 				function(err) {
 					if (err) console.log(err);
 					else info.checkout = true;
